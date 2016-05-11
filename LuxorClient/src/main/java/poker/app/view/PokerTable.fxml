@@ -124,6 +124,7 @@
                      <children>
                         <Button id="btnStartGame" fx:id="btnStartGame" mnemonicParsing="false" onAction="#btnStart_Click" prefWidth="80.0" text="Start" />
                         <Button id="btnDeal" mnemonicParsing="false" onAction="#btnDeal_Click" prefWidth="80.0" text="Deal" />
+                        <Button id="btnDraw" mnemonicParsing="false" onAction="#btnDraw_Click" prefWidth="80.0" text="Draw" />
                      </children>
                   </HBox>
                   <HBox id="hBoxDeck" fx:id="hBoxDeck" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1" />

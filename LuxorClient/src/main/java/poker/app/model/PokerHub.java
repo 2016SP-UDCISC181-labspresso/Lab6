@@ -10,6 +10,7 @@ import java.util.Map;
 
 import exceptions.DeckException;
 import netgame.common.Hub;
+import poker.app.view.*;
 import pokerBase.Action;
 import pokerBase.Card;
 import pokerBase.CardDraw;
@@ -161,6 +162,17 @@ public class PokerHub extends Hub {
 				System.out.println("Sending Start back to Client");
 				sendToAll(HubGamePlay);
 				break;
+				
+			case Draw:
+				
+				
+				
+				/*
+				if p == dealer && eDrawCount.valueOf(arg0) == last possible card allowed{
+					score hand
+				}
+				break;
+				*/ 
 			case Deal:
 
 				break;
@@ -176,7 +188,7 @@ public class PokerHub extends Hub {
 			if (cd.getCardDestination() == eCardDestination.Player) {
 				for (int n : HubGamePlay.getiActOrder()) {
 					// If Player at the position exists... and the their hand
-					// isnt' folded, deal a card
+					// isn't folded, deal a card
 					if ((HubGamePlay.getPlayerByPosition(n) != null)
 							&& (HubGamePlay.getPlayerHand(HubGamePlay.getPlayerByPosition(n).getPlayerID()))
 									.isFolded() == false) {

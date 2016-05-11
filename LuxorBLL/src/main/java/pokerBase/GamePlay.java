@@ -1,4 +1,4 @@
-package pokerBase;
+   bbbbb package pokerBase;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -38,7 +38,7 @@ public class GamePlay implements Serializable   {
 	}
 
 	public void setGameID(UUID gameID) {
-		GameID = gameID;
+		GameID = gameID; 
 	}
 
 	public Rule getRule()
@@ -83,8 +83,6 @@ public class GamePlay implements Serializable   {
 		GameDealer = gameDealer;
 	}
 
-
-
 	public int[] getiActOrder() {
 		return iActOrder;
 	}
@@ -101,6 +99,18 @@ public class GamePlay implements Serializable   {
 		DrawCnt = nextDraw;
 	}
 
+	public void EvaluateDraw(){
+		
+		if (getPlayerNextToAct().getPlayerID() == getGameDealer().getPlayerID() &  getPlayerHand(getPlayerNextToAct().getPlayerID()).getCardsInHand().size() == rle.getCardDraw(getDrawCnt()).getCardCountDrawn().getCardCount()){
+		
+		/*if p == dealer && eDrawCount.valueOf(arg0) == last possible card allowed
+		 * 
+		 * score hand - Hand class - line 116
+		 * 
+		*/
+		}
+	}
+	
 	public Player ComputePlayerNextToAct(int iCurrentPosition)
 	{
 		int [] iNextOrder = GetOrder(iCurrentPosition);
@@ -141,6 +151,7 @@ public class GamePlay implements Serializable   {
 		}
 		*/					
 	}
+	
 	public Player getPlayerNextToAct() {
 		return PlayerNextToAct;
 	}
@@ -149,7 +160,6 @@ public class GamePlay implements Serializable   {
 		PlayerNextToAct = playerNextToAct;
 	}
 	
-
 	public static int[] GetOrder(int iStartPosition) {
 		int[] iPos = null;
 		switch (iStartPosition) {
@@ -173,13 +183,6 @@ public class GamePlay implements Serializable   {
 		return iPos;
 	}
 	
-	
-	
-	
-	
-	
-	
-
 	public static int NextPosition(int iCurrentPosition, int[] iOrder) {
 		int iNextPosition = -1;
 		try {
