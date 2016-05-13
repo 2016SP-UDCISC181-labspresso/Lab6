@@ -39,7 +39,7 @@ public class PokerHub extends Hub {
 
 	protected void playerConnected(int playerID) {
 
-		if (playerID == 2) {
+		if (playerID == 5) {
 			shutdownServerSocket();
 		}
 	}
@@ -166,13 +166,8 @@ public class PokerHub extends Hub {
 			case Draw:
 				
 				
-				
-				/*
-				if p == dealer && eDrawCount.valueOf(arg0) == last possible card allowed{
-					score hand
-				}
 				break;
-				*/ 
+				 
 			case Deal:
 
 				break;
@@ -183,6 +178,32 @@ public class PokerHub extends Hub {
 	}
 
 	private void DealCards(CardDraw cd) throws DeckException {
+		for (int i = 0; i < cd.getCardCountDrawn().getCardCount(); i++) {
+
+			if (cd.getCardDestination() == eCardDestination.Player) {
+				for (int n : HubGamePlay.getiActOrder()) {
+					// If Player at the position exists... and the their hand
+					// isn't folded, deal a card
+					if ((HubGamePlay.getPlayerByPosition(n) != null)
+							&& (HubGamePlay.getPlayerHand(HubGamePlay.getPlayerByPosition(n).getPlayerID()))
+									.isFolded() == false) {
+						HubGamePlay.getPlayerHand(HubGamePlay.getPlayerByPosition(n).getPlayerID())
+								.Draw(HubGamePlay.getGameDeck());
+					}
+				}
+
+			}
+			else if (cd.getCardDestination() == eCardDestination.Community)
+			{
+				HubGamePlay.getCommonHand().Draw(HubGamePlay.getGameDeck());
+			}
+		}
+
+	}
+	
+	private void DrawCards(CardDraw cd) throws DeckException {
+		
+		//TODO inspect and edit this accordingly - the other side of the task
 		for (int i = 0; i < cd.getCardCountDrawn().getCardCount(); i++) {
 
 			if (cd.getCardDestination() == eCardDestination.Player) {

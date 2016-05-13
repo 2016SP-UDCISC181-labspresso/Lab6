@@ -1,4 +1,4 @@
-   bbbbb package pokerBase;
+package pokerBase;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -18,6 +18,8 @@ public class GamePlay implements Serializable   {
 
 	private HashMap<UUID, Player> hmGamePlayers = new HashMap<UUID, Player>();
 	private HashMap<UUID, Hand> hmGamePlayerHand = new HashMap<UUID, Hand>();
+	private ArrayList<Hand> playerHands = new ArrayList<Hand>();
+	private ArrayList<UUID> playerIDs = new ArrayList<UUID>();
 	private Hand CommonHand = new Hand();
 	private Player GameDealer = null;
 	private Player PlayerNextToAct = null;	
@@ -31,6 +33,7 @@ public class GamePlay implements Serializable   {
 		this.setGameID(UUID.randomUUID());
 		this.setGameDealer(GameDealer);
 		this.rle = rle;
+		this.playerHands = getPlayerHands();
 	}
 
 	public UUID getGameID() {
@@ -99,16 +102,40 @@ public class GamePlay implements Serializable   {
 		DrawCnt = nextDraw;
 	}
 
+	public ArrayList<Hand> getPlayerHands(){
+		
+		Iterator it = getGamePlayers().entrySet().iterator();
+		while (it.hasNext()) {
+			Map.Entry pair = (Map.Entry) it.next();
+			UUID ID = (UUID)pair.getKey();
+			playerIDs.add(ID);
+			Hand h = (Hand)pair.getValue();
+			playerHands.add(h);
+		}
+		
+		return playerHands;
+	}
+	
 	public void EvaluateDraw(){
 		
 		if (getPlayerNextToAct().getPlayerID() == getGameDealer().getPlayerID() &  getPlayerHand(getPlayerNextToAct().getPlayerID()).getCardsInHand().size() == rle.getCardDraw(getDrawCnt()).getCardCountDrawn().getCardCount()){
 		
+			
+			
+			getPlayerHand(getPlayerNextToAct().getPlayerID()).Evaluate(playerHands);
+			//WHY U DO DIS
+			
 		/*if p == dealer && eDrawCount.valueOf(arg0) == last possible card allowed
 		 * 
 		 * score hand - Hand class - line 116
 		 * 
 		*/
 		}
+		
+		else{
+			
+		}
+		
 	}
 	
 	public Player ComputePlayerNextToAct(int iCurrentPosition)
