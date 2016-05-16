@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.UUID;
 
+import exceptions.HandException;
 import pokerEnums.eDrawCount;
 
 public class GamePlay implements Serializable   {
@@ -116,7 +117,7 @@ public class GamePlay implements Serializable   {
 		return playerHands;
 	}
 	
-	public void EvaluateDraw(){
+	public void EvaluateDraw() throws HandException{
 		
 		if (getPlayerNextToAct().getPlayerID() == getGameDealer().getPlayerID() &  getPlayerHand(getPlayerNextToAct().getPlayerID()).getCardsInHand().size() == rle.getCardDraw(getDrawCnt()).getCardCountDrawn().getCardCount()){
 		
