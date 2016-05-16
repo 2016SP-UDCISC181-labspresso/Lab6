@@ -13,6 +13,8 @@ public enum eHandExceptionType {
 			return "Hand doesn't have enough cards.";
 		}
 	}
+
+	
 	
 
 }

@@ -1,4 +1,4 @@
-package pokerBase;
+  package pokerBase;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -10,6 +10,7 @@ import java.util.UUID;
 
 import exceptions.HandException;
 import pokerEnums.eDrawCount;
+import pokerEnums.eHandExceptionType;
 
 public class GamePlay implements Serializable   {
 
@@ -118,23 +119,13 @@ public class GamePlay implements Serializable   {
 	}
 	
 	public void EvaluateDraw() throws HandException{
-		
+		//Evaluate the hands if you get back to the dealer
 		if (getPlayerNextToAct().getPlayerID() == getGameDealer().getPlayerID() &  getPlayerHand(getPlayerNextToAct().getPlayerID()).getCardsInHand().size() == rle.getCardDraw(getDrawCnt()).getCardCountDrawn().getCardCount()){
-		
-			
-			
 			getPlayerHand(getPlayerNextToAct().getPlayerID()).Evaluate(playerHands);
-			//WHY U DO DIS
-			
-		/*if p == dealer && eDrawCount.valueOf(arg0) == last possible card allowed
-		 * 
-		 * score hand - Hand class - line 116
-		 * 
-		*/
 		}
 		
 		else{
-			
+			throw new HandException(getPlayerHand(getPlayerNextToAct().getPlayerID()), eHandExceptionType.ShortHand);
 		}
 		
 	}

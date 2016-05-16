@@ -14,11 +14,11 @@ public class CardDraw implements Serializable {
 	private eCardVisibility CardVisibility;
 	private eCardCount CardCountDrawn;
 
-	public CardDraw(eCardCount eCardPosition, eCardCount eCardCountDrawn, eCardDestination cardDestination,	eCardVisibility cardVisiblity) {
+	public CardDraw(eCardCount eCardPosition, eCardCount eCardCountDrawn, eCardDestination cardDestination,	eCardVisibility cardVisibility) {
 		super();
 		this.CardCountDrawn = eCardCountDrawn;
 		this.CardDestination = cardDestination;
-		this.CardVisibility = CardVisibility;
+		this.CardVisibility = cardVisibility;
 		this.CardPosition = eCardPosition;
 	}
 
